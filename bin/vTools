@@ -1,0 +1,5 @@
+#!/bin/bash
+
+/home/hector/Dropbox/git/vTools/vTools/vTools.py  ../../exa/rtl_new/link_controller.v
+/home/hector/Dropbox/git/vTools/vTools/vTools.py  ../../exa/rtl_new/fifo.v
+
