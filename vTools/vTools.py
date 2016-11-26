@@ -94,37 +94,37 @@ with open(testbenchFileName, 'w') as testFile:
 
     totalPorts = len(portList) - 2
     currentPort = 0
+    
+    inPorts = []
+    outPorts = []
 
     for port in iterPorts:
         if len(port) == 3:
             if currentPort != totalPorts:
                 testFile.write("\n\t.{}({}),".format(port[2], port[2]))
-            else:
-                testFile.write("\n\t.{}({}),".format(port[2], port[2]))
             currentPort += 1
         elif len(port) == 4:
             if currentPort != totalPorts:
                 testFile.write("\n\t.{}({}),".format(port[3], port[3]))
-            else:
-                testFile.write("\n\t.{}({})".format(port[3], port[3]))
             currentPort += 1
-            # print("DEBUG: Total: {}, Current: {}".format(totalPorts, currentPort))
+        # print("DEBUG: Total: {}, Current: {}".format(totalPorts, currentPort))
     testFile.write("\n);")
 
     """ clock generator
     """
     testFile.write("\n\n/* --- clock signal generator --- */")
     testFile.write("\nalways begin")
-    testFile.write("\n\tclk = 1'b0")
-    testFile.write("\n\t#(10)")
-    testFile.write("\n\tclk = 1'b1")
-    testFile.write("\n\t#(10)")
+    testFile.write("\n\tclk = 1'b0;")
+    testFile.write("\n\t#(10);")
+    testFile.write("\n\tclk = 1'b1;")
+    testFile.write("\n\t#(10);")
     testFile.write("\nend")
 
     """ generate initial block
     """
     testFile.write("\n\n/* --- initial block --- */")
     testFile.write("\ninitial begin")
+
     testFile.write("\n\t$finish;")
     testFile.write("\nend")
 
