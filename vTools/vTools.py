@@ -71,6 +71,9 @@ with open(testbenchFileName, 'w') as testFile:
         length 3: [0] direction, [1] data type, [2] port name
         length 4: [0] direction, [1] data type, [2] port size, [3] port name
     """
+    
+    inPorts = []
+
     iterPorts = iter(portList)
     next(iterPorts)
     testFile.write("\n\n/* --- signal declaration for UUT --- */")
@@ -78,11 +81,13 @@ with open(testbenchFileName, 'w') as testFile:
         if len(port) == 3:
             if port[0] == "input" or port[0] == "inout":
                 testFile.write("\n\treg {};".format(port[2]))
+                inPorts.append(port[2])
             elif port[0] == "output":
                 testFile.write("\n\twire {};".format(port[2]))
         elif len(port) == 4:
             if port[0] == "input" or port[0] == "inout":
                 testFile.write("\n\treg {} {};".format(port[2], port[3]))
+                inPort.append(port[3])
             elif port[0] == "output":
                 testFile.write("\n\twire {} {};".format(port[2], port[3]))
 
@@ -94,9 +99,6 @@ with open(testbenchFileName, 'w') as testFile:
 
     totalPorts = len(portList) - 2
     currentPort = 0
-    
-    inPorts = []
-    outPorts = []
 
     for port in iterPorts:
         if len(port) == 3:
@@ -124,7 +126,8 @@ with open(testbenchFileName, 'w') as testFile:
     """
     testFile.write("\n\n/* --- initial block --- */")
     testFile.write("\ninitial begin")
-
+    for inPort in inPorts:
+        testFile.write("\n\t{} = 0;".format(inPort))
     testFile.write("\n\t$finish;")
     testFile.write("\nend")
 
