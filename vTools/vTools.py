@@ -104,10 +104,14 @@ with open(testbenchFileName, 'w') as testFile:
         if len(port) == 3:
             if currentPort != totalPorts:
                 testFile.write("\n\t.{}({}),".format(port[2], port[2]))
+            else:
+                testFile.write("\n\t.{}({})".format(port[2], port[2]))
             currentPort += 1
         elif len(port) == 4:
             if currentPort != totalPorts:
                 testFile.write("\n\t.{}({}),".format(port[3], port[3]))
+            else:
+                testFile.write("\n\t.{}({})".format(port[3], port[3]))
             currentPort += 1
         # print("DEBUG: Total: {}, Current: {}".format(totalPorts, currentPort))
     testFile.write("\n);")
