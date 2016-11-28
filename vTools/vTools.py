@@ -135,6 +135,16 @@ with open(testbenchFileName, 'w') as testFile:
     testFile.write("\n\t$finish;")
     testFile.write("\nend")
 
+    """ task area
+    """
+    testFile.write("\n\n/* --- Task Area --- */")
+    testFile.write("\ntask posEdge();")
+    testFile.write("\n\tbegin")
+    testFile.write("\n\t\t@(posedge clk)")
+    testFile.write("\n\t\t#(2);")
+    testFile.write("\n\tend")
+    testFile.write("\nendtask")
+
     """ endmodule
     """
     testFile.write("\n\nendmodule")
