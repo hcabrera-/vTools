@@ -97,7 +97,7 @@ with open(testbenchFileName, 'w') as testFile:
     testFile.write("\n\n/* --- UUT --- */")
     testFile.write("\n{} UUT\t(".format(next(iterPorts)))
 
-    totalPorts = len(portList) - 2
+    totalPorts = len(portList) - 1
     currentPort = 0
 
     for port in iterPorts:
